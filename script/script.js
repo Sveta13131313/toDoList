@@ -6,13 +6,16 @@ const todoControl = document.querySelector('.todo-control'),
     todoList = document.querySelector('.todo-list'),
     todoCompleted = document.querySelector('.todo-completed');
 
-const todoData =[];
-let json;
+
+const todoData = JSON.parse(localStorage.getItem('data')) || [];
 
 const render = function () {
+
     todoList.textContent = '';
     todoCompleted.textContent = '';
+
     todoData.forEach(function (item, index) {
+
         const li = document.createElement('li');
         li.classList.add('todo-item');
 
@@ -39,8 +42,7 @@ const render = function () {
             render();
         })
     })
-    json=JSON.stringify(todoData);
-    console.log(json);
+    localStorage.data=JSON.stringify(todoData);
 };
 
 todoControl.addEventListener('submit', function (event) {
@@ -53,11 +55,9 @@ todoControl.addEventListener('submit', function (event) {
         }
 
         todoData.push(newTodo);
-     
-        render();
         headerInput.value = '';
+        render();
    }
 });
-
 
 render();
