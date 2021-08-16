@@ -38,7 +38,8 @@ const render = function () {
 
         const btntodoRemove = li.querySelector('.todo-remove');
         btntodoRemove.addEventListener('click', function () {
-            todoData.splice(index);
+            console.log(index);
+            todoData.splice(index,1);
             render();
         })
     })
